@@ -1,0 +1,136 @@
+what is language ? 
+--------------------------------
+language is a way to communicate 
+
+------------------------------
+Compiler : which is compile whole source file and give output after completion of source file. 
+
+Interpreter : it execute line by line 
+
+    line by line it send code to machine - and machine convert into human code and resend to user. 
+
+    Interpreter is slower than Compiler. 
+
+-------------------------------------
+what is meaning of program ? 
+
+program is a collection of instruction code. 
+
+-------------------------------------
+what is meaning of programing language ? 
+
+A language which is used to write a program. 
+
+-------------------------------------------------
+example of programing languages ?
+
+
+C language , C++ language , java , python , php , .net c#(c-sharp) ... 
+
+---------------------------------------------------
+what is c programing language ? 
+
+C is a most powerfull , popular  compiler type programing language. 
+C is easy to understand. 
+C language was invented by denis m. ritchie in AT and T bell lab. 
+
+----------------------------------------------------------
+History of C programing : 
+
+Before C programing there is BCPL language then B language and then after C language 
+
+C language is a better version of B language. 
+
+actually BCPL and B language working upon assembly language so, it difficult to understand
+so, denis m ritchie invented C programing language in 1972  (tranditional C programing).
+
+in 1989 ANSI standarized C programing 
+
+ANSI : American national standard institute. 
+
+after standarized of c programing its know as ANSI C , C89 
+
+----------------------------------------------------------------------
+Features of C programing language 
+
+=> C language is a easy to understand programing language - mother of all programing language. 
+
+=> C is small because it contains only 32 keywords 
+
+=> C contains libaries 
+
+=====================================
+Real world uses of C language 
+
+operating system 
+embedded system 
+games 
+kernels 
+drivers 
+
+===================================================
+Structure of C program 
+
+1) documentation of program 
+
+        which represent your program's title or description 
+        which is represent by comments 
+
+        compiler skip or ignore comments at executation time 
+
+        there are 2 types of comments 
+
+        i) single line comment  : which is represent by // 
+
+            e.g. 
+
+                // this is single line comment
+        ii) multi-line comment  : which is represent by /*  ...  */ 
+
+            e.g.  
+
+                /* 
+                    this is 
+                    my multiline 
+                        comment 
+
+                */ 
+
+2) connection with C language libary 
+
+#include<stdio.h> 
+#include<conio.h>   // optional 
+
+        here,  # : which means predefined 
+
+               include : to add something 
+
+               <stdio.h> : standard input output header file 
+
+                        using of this header file we can access inbuilt function from this file 
+
+                <conio.h> : console input output header file. 
+
+
+3) executation of program
+
+void main()
+{
+
+}
+
+
+    /* here, void is a data type which does not return value. 
+
+        main : main is a function which is represent that this a 
+               main executatable function of program 
+
+        {
+
+        }
+
+       { }  this is represent block of code . 
+
+    */
+        
+
