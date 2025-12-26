@@ -282,6 +282,32 @@ syntax :
 
     scanf("%f",&var);
 
+----------------------------------------------------
+float : pointed value 
+
+bookprice 
+
+price 
+
+height 
+
+
+// accept book price from user and display on console screen
+#include<stdio.h>
+void main()
+{
+    // step 1 : variable decalaration 
+    float  book_price;
+    
+    // step 2 : ask from user 
+    printf("Enter book price : ");
+    scanf("%f",&book_price);
+    
+    // step 3 : display book price on console screen 
+    printf("\n book price = %.2f",book_price);
+    
+}
+
 =====================================================
 operators : there is some specific symbol which is mainly used to perform operations 
 
@@ -299,4 +325,149 @@ operators : there is some specific symbol which is mainly used to perform operat
 
     +   -    *   /   %  
 
+// Example of Airthmetic operators 
+
+#include<stdio.h>
+void main()
+{
+    int a,b;
     
+    a = 10;
+    b = 20;
+    
+    printf("%d + %d = %d",a,b,a+b);
+    printf("\n%d - %d = %d",a,b,a-b);
+    printf("\n%d * %d = %d",a,b,a*b);
+    printf("\n%d / %d = %d",a,b,a/b);
+    printf("\n%d %% %d = %d",a,b,a%b);
+}
+
+
+2) Assignment operator : 
+
+    = 
+
+    to assign a value 
+
+    shorthand operator : 
+            combination of Airthmetic and Assignment operator 
+
+            +=   -=   *=  /=  %= 
+
+3) Relational operator : or (comparision operator)
+
+    <   >    <=   >=   ==  != 
+
+// Example of Relational operator 
+
+#include<stdio.h>
+void main()
+{
+    int num1,num2; // step 1 : variable declaration 
+    
+    num1 = 20;    // step 2 : variable defination 
+    num2 = 34;
+    
+    // relational or comparision operator 
+    // 0 - false  1 means true 
+    
+    int result;
+    
+    result = num1 > num2;
+    printf("\n%d",result);
+    
+    result = num1 < num2;
+    printf("\n%d",result);
+    
+    result = num1 == num2;
+    printf("\n%d",result);
+    
+    result = num1 != num2;
+    printf("\n%d",result);
+}
+
+
+
+4) logical operator : 
+
+        &&   (And operator)
+
+        ||   (OR operator)
+
+        !    (not operator)
+// Example of Logical operator 
+
+#include<stdio.h>
+void main()
+{
+    int num1,num2,num3; // step 1 : variable declaration 
+    
+    num1 = 20;    // step 2 : variable defination 
+    num2 = 34;
+    num3 = 40;
+    
+    int result = (num1>num2) && (num1 > num3);
+    printf("\n%d",result);
+    
+    result = (num1<num2) && (num1 < num3);
+    printf("\n%d",result);
+    
+    result = (num1 > num2) || (num1 > num3);
+    printf("\n%d",result);
+}
+
+    
+5) unary operator (increment and decrement operator )
+
+        this operator divided in 2 parts 
+
+        postfix 
+        prefix 
+
+        ++ (increment)
+        -- (decrement)
+
+
+
+// Example of unary operator 
+
+#include<stdio.h>
+void main()
+{
+    int x=5;
+    
+    printf("\n x = %d",x);
+    printf("\n x++ = %d",x++);
+    
+    printf("\n x = %d",x);
+    printf("\n ++x = %d",++x);
+}
+
+6) bitwise operator : which is perform on bits 
+
+    XOR              
+    NOT 
+    OR 
+    LEFT SHIFT 
+    RIGHT SHIFT 
+
+7) Conditional operator : 
+
+        exp1 ? exp2 : exp3; 
+
+        ? : 
+
+// find maximum value from 2 values : conditional operator 
+// ternary operator : because it devided in 3 parts 
+#include<stdio.h>
+void main()
+{
+    int num1,num2;
+    
+    num1 = 45;
+    num2 = 85;
+    //          Exp1            Exp2    Exp3
+    int max = (num1 > num2)  ?  num1  : num2;
+    printf("\nmax = %d",max);
+}
+
