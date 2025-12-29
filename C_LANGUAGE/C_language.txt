@@ -471,3 +471,83 @@ void main()
     printf("\nmax = %d",max);
 }
 
+===============================================
+control statements 
+    there are 3 types of control statements 
+
+    1) conditional statements 
+
+    2) looping statements 
+    
+    3) jumping statements 
+
+    --------------------------------
+    1) conditional statements : which is based on condition wise 
+
+        there are 5 types of conditional statements 
+
+        i) if statement 
+        ii) if..else statement 
+        iii) else if statement 
+        iv) nested if statement 
+        v) switch statement 
+
+    -------------------------------
+    i) if statement : if condition goes true it will execute 
+
+        syntax : 
+
+        if (condition)
+        {
+
+        }
+
+    ii) if .. else statement : if part execute when condition goes true and 
+                else part execute when condition goes false.
+
+        syntax : 
+
+        if (condition)
+        {
+            true statement;
+        }
+        else
+        {
+            false statement;
+        }
+-----------------------------------
+// find even and odd number 
+#include<stdio.h>
+void main()
+{
+    int num;
+    
+    printf("Enter a number : ");
+    scanf("%d",&num);
+    
+    if(num%2==0)
+    {
+        printf("\n %d is Even number",num);
+    }
+    else
+    {
+        printf("\n %d is Odd number",num);
+    }
+}
+-----------------------------------------
+
+>   greater than 
+
+>=  greater than equal too 
+
+<   less than 
+
+<=  less than equal too 
+
+==  equal too 
+
+========================================
+accept book price 
+
+actuall book _ price = 100 
+
