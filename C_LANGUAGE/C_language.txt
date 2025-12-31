@@ -551,3 +551,92 @@ accept book price
 
 actuall book _ price = 100 
 
+=========================================
+                ()   []   
+               *  /  %   (left to right)
+operator ::::   +   -    (left to right)
+
+#include<stdio.h>
+void main()
+{
+    int a = 10;
+    int b = 5;
+    int c = 3;
+    
+    int ans = a + b - c;
+    printf("\n ans = %d",ans);
+    
+     ans = a - b + c;
+    printf("\n ans = %d",ans);
+}
+==================================
+#include<stdio.h>
+void main()
+{
+    int ans;
+    
+    ans = 10 + 2 * 3;
+    printf("\n ans = %d",ans);
+    
+    ans = 10 * 5 / 2;
+    printf("\n ans = %d",ans);
+    
+    ans = 12 + 6 * 3 / 2;
+    printf("\n ans = %d",ans);
+    
+    ans = 10 + 2 + (30 - 3);
+    printf("\n ans = %d",ans);
+}
+
+=======================================
+3) else .. if statement 
+
+        when we want to work with multiple if conditions 
+
+syntax :
+
+    if (condition)
+    {
+        statement;
+    }
+    else if(condition)
+    {
+        statement;
+    }
+    else if(condition)
+    {
+        statement;
+    }
+    else
+    {
+        false statement;
+    }
+
+4) nested if statement : 
+
+    when if statement call inside the another if statement 
+
+syntax : 
+
+if (condition)
+{
+    if(condition)
+    {
+        true statement;
+    }
+    else
+    {
+        false statement
+    }
+}
+else 
+{
+
+}
+
+=========================================
+accept 2 numbers from user and check which number is greater 
+
+Enter a number : 85
+Enter a number : 65
+
