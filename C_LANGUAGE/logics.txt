@@ -1,0 +1,7 @@
+/*
+even odd 
+positive negative 
+swap 
+swap without using 3rd variable
+factorial value 
+*/

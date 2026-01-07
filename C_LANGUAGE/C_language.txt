@@ -640,3 +640,84 @@ accept 2 numbers from user and check which number is greater
 Enter a number : 85
 Enter a number : 65
 
+=========================================
+switch case : which is use for multiple conditions 
+
+    note : we can't use float data type. 
+          we can't user logical operators 
+
+syntax : 
+
+switch(expression)
+{
+    case value:
+        statement;
+        break;
+
+    case value:
+        statement;
+        break;
+
+    default:
+        statement;
+}
+
+=================================
+looping concepts : 
+    repeatation 
+
+    there are 2 types of loop 
+
+    1) for loop 
+    2) while loop 
+    3) do..while loop 
+----------------------------
+
+1) for loop : for loop is a sequence controlled loop 
+
+    which is divided in 3 counters 
+
+    syntax : 
+    for(counter1;counter2;counter3)
+    {
+
+    }
+
+    syntax 
+    for(initlization;condition;updation)
+    {
+    }
+----------------------------------------
+start : 
+end : 
+
+------------------------------------------------
+2) while loop : 
+
+        while loop is an entry controlled loop 
+
+        it check condition at entry level and if condition goes true loop will execute. 
+
+    syntax : 
+
+    initlization;
+    while (condition)
+    {
+        statement;
+        updation;
+    }
+
+=========================================
+NESTED FOR LOOP : 
+
+    when loop call inside the another loop 
+
+    syntax : 
+
+    for(initlization ; condition ; updation)
+    {
+        for(initlization;condition;updation)
+        {
+            
+        }
+    }
