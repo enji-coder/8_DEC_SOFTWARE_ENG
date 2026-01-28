@@ -721,3 +721,126 @@ NESTED FOR LOOP :
             
         }
     }
+
+=========================================
+do.. while loop : 
+
+do while loop is an exit controlled loop - it check condition at exit level. 
+
+so, there are at least 1 posibility of that it execute 1 time if condition goes false. 
+
+syntax : 
+
+inintlization 
+do 
+{
+    statement;
+    updation;
+} while (condition);
+
+================================================================
+function : function is a most powerfull topic of any programing language 
+        function provides reusability 
+
+        using of function we can reduce our code. 
+
+        using of we can call code as per our need. 
+
+        so, we can save our development time. 
+
+        there are 2 types of functions 
+
+        1) built-in function : which is predefined by c programing 
+
+                e.g.  printf() , scanf() , getch() , gets()... 
+
+        2) user-defined functions : that function which is created by user as per their requirement. 
+
+    
+    => how to create function 
+
+    there are 3 steps to follow function
+
+    step 1 : function declaration
+
+        syntax : 
+
+            <returntype>   funname();
+
+    step 2 : function defination:   main block of code which represent function executation 
+
+        syntax : 
+
+            <returntype>  funname()
+            {
+                // block of code 
+            }
+
+    step 3 : function calling : use of function 
+
+        syntax : 
+
+            funname(); 
+
+==================================================
+Function categories :: 
+
+there are mainly 4 types of function categories
+
+1) function without parameters and function without return types. 
+
+    syntax : 
+
+        void funnname()
+        {
+
+        }
+
+2) function with parameters and function without return types. 
+
+    syntax : 
+
+        void funname(parameters,parameters...)
+        {
+
+        }
+
+3) function without parameters and function with return type.
+
+    syntax : 
+
+        returntype funname()
+        {
+            return value;
+        }
+
+4) function with parameters and function with return type 
+
+    syntax : 
+
+        returntype funname(parameters)
+        {
+            return values;
+        }
+
+===========================================================
+Array : 
+
+    Array is a collection of numbers 
+
+    in simple language we can say that a single variable can contain single value but in 
+    array we can store multiple values in a single variable. 
+
+    e.g.    int   a = 10;   simple variable 
+
+            int   a = 10,20,30,40    X 
+
+    syntax : 
+
+    in c language Array represent by {} braces. 
+
+    and we have to provide size of array 
+
+    e.g.   int a[5] = {};
+
+    
