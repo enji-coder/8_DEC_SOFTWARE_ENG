@@ -843,4 +843,28 @@ Array :
 
     e.g.   int a[5] = {};
 
-    
+======================================================
+/*
+Nested structure : when structure call inside the structure 
+	there are 2 ways to write nested structure 
+	
+	1)  struct <structurename>
+		{	
+			field
+			struct <structuinner>
+			{
+				field
+			}innerobj;
+		}outerobj;
+		
+	2) struct <structure1>
+		{
+		
+		};
+		struct <2ndstructure>
+		{
+			field 
+			struct structure1 obj;
+			
+		}obj;
+*/
