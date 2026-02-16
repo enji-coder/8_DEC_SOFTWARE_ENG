@@ -1,0 +1,93 @@
+what is c++ : 
+
+    c++ is an extend version of c language 
+
+    C language + 1 
+
+    c + 1 
+
+    it showing postfix increment 
+
+------------------------------------------
+POP vs OOP : 
+
+    procedure oriented programing 
+
+    which is mainly focus on functions. 
+
+    our all programs divide in chunks of functions 
+
+OOP : 
+
+    object oriented programing language 
+
+    -> everythings depends on object 
+    
+------------------------------------------
+OOPS : object oriented programing system 
+
+class : class is a collection of different different data members 
+
+    class is a blueprint of object 
+   
+    class is a collection of elements 
+
+    class is a userdefined datatype
+
+    syntax :
+    class <classname>()
+    {
+        public:
+            data member;
+            member function();
+    };
+
+--------------------------------------------------
+object : object is an instance of class. or we can say that 
+    object is a variable of class. 
+
+    using of object we can access properties of class. 
+
+    syntax : 
+
+    classname  objname = classname();
+--------------------------------------------------
+constructor : constructor is a most powerfull concept of c++ 
+    constructor is a special member function 
+    or we can say that constructor is a special method 
+
+    which is invoke automatically whenever we create object of class. 
+
+    it is usually work for initilization of member. 
+
+    note : constructor does not have any return type 
+        and constructor always declare in public mode. 
+
+    constructor name and classname both are same we can't take \
+    different as a constructor. 
+
+    syntax : 
+
+    class <classname>
+    {
+        constructor:
+            body of constructor
+    }
+
+--------------------------------------------------
+there are mainly 3 types of constructor 
+
+1) default constructor 
+2) parameterized constructor
+3) copy constructor
+
+---------------------------
+1) default constructor : does not contain any parameter 
+    when we want to display or do some static value 
+    we can use default constructor
+
+2) parameterized constructor : when we pass parameter 
+    at object creation time its called parameterized 
+    constructor.
+
+    
