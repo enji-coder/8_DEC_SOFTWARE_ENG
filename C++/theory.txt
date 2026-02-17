@@ -91,3 +91,41 @@ there are mainly 3 types of constructor
     constructor.
 
     
+--------------------------------------------------
+this pointer : this pointer which is refer current class object 
+
+    means we can define current class member using of this pointer
+
+--------------------------------------------------
+
+3) copy constructor : copy constructor is a special constructor which 
+        create new object using of existing object. 
+
+        syntax :
+
+        constructorname   (const classname  &obj)
+        {
+            ..
+        }
+
+        here  & means address operator 
+
+
+--------------------------------------------------
+pass by value :  function parameter we are passing only object 
+    it will not affect original value 
+
+        - we are passing value here only 
+
+pass by reference : we are passing reference of object 
+    so, whenever we apply change it affect original value 
+
+        - we are passing original object 
+
+pass by address - pointer concept 
+
+        here, we pass address of object so, whenever we apply changes in address it affect 
+        original value 
+        
+     
+
