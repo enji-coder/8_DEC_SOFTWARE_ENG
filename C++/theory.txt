@@ -127,5 +127,129 @@ pass by address - pointer concept
         here, we pass address of object so, whenever we apply changes in address it affect 
         original value 
         
-     
+    
+----------------------------------------------------------------------
+inheritance : 
+
+    inheritance is a most powerfull concept of oops concepts 
+
+    -> inheritance provide reusability - so, we can reduce our work and save development time 
+
+    -> inheritance provide parent and child relationalship 
+
+    there are 5 types of inheritance 
+
+    1) single level inheritance
+    2) multi-level inheritance 
+    3) multiple inheritance
+    4) hierarchical inheritance
+    5) hybrid inheritance
+
+    -> inheritance is a part of relationalship so, it represent IS-A relationalship
+
+
+    parent - child   (100% utility of parent's properties.)
+
+----------------------------------------------
+1) single level inheritance:
+
+        when parent and child in relationalship its called single level inheritance
+
+        A   (parent)
+        |
+        V 
+        B   (child)
+
+    syntax : 
+
+    class parentclass 
+    {
+
+    };
+    class childclass : <accessSpecifier>  <parentclass> 
+    {
+
+    };
+
+
+-----------------------------------------------------
+Access Specifiers or visibility modes 
+
+there are 3 types of Access Specifiers 
+
+1) public 
+2) private 
+3) protected 
+
+-------------------------------------------------------
+in structure by default all members are public but in class 
+by default all members are private so, we have to 
+define in public mode. 
+
+-> public : we can access class properties from anywhere inside the and outside
+            the class. 
+
+        -> anywhere from the program 
+-> private : private means private data - we can't access outside the class 
+        even child class can't user private class data member and member function 
+
+        so, private provide data protection and data hiding in class functionality
+
+        -> only own class can access 
+
+-> protected : protected is similar like private but protected member 
+        can access by own class and child class. 
+
+        -> own class and child class 
+
+-------------------------------------------------------
+2) multi-level inheritance: 
+
+        Extended level of multi level inheritance: 
+
+        class A                         // class A is a super class or Base class or Parent class 
+        {
+
+        };
+        class B : public <parentclass>  // class B is a intermediate parent class  
+        {
+
+        };
+        class C : public  <parentclass> // class C is a sub class or derived class or Child class 
+        {
+
+        };
+-----------------------------------------------------
+3) Multiple inheritance : 
+
+        in this inheritance there are more than one parent class and one child class 
+
+        means one child can have more than one parent or we can say that multiple parent 
+        class 
+
+        but in real world multiple inheritance not supported because in 
+        real world two parents not possible thats why java does'not support this concept 
+
+        multiple inheritance the main aim to achieve multiple parent's functionality in 
+        one child class 
+
+
+        syntax : 
+
+        class  parent1 
+        {
+
+        };
+        class  parent2
+        {
+
+        };
+        class Child : <accessSpecifier>  parent1 , <accessSpecifier> parent2 
+        {
+
+        };
+
+        but there are possiblility of ambiugity (confusion between same name properties)
+        
+
 
