@@ -249,7 +249,72 @@ define in public mode.
 
         };
 
-        but there are possiblility of ambiugity (confusion between same name properties)
+        but there are possiblility of Ambiguty (confusion between same name properties)
         
+====================================================================
+there is one issue or we can say problem with multiple inheritance
 
+ambigity : Ambiguty means when both parents have same name methods and child import 
+        (inherite) , it generate confusion its called Ambiguty. 
+
+        unfortunatlly child have 2 same name methods so, compiler get confuse which method 
+        i have to access first. 
+
+
+-------------------------------------------------------
+::   this is scope resolution operator means 
+    which class properties you want to access it 
+
+====================================================================
+hierarchical inheritance : 
+
+
+                A 
+                |
+                V 
+        --------------------
+        |                   |
+        V                   V 
+        B                   C  
+
+
+    when one parent have multiple child class. 
+====================================================================
+5) hybrid inheritance: 
+
+        most complicated inheritance
+
+        because it represent like diamond - and it create Ambiguty
+
+        in simple language we can say that hybrid inheritance
+        is a combination of multiple and hierarchical inheritance
+
+                 A 
+                 |
+            -----------
+            |          |
+            B          C 
+            \         /  
+              \      /
+               \    /
+                 D 
+
+    or 
+
+
+            A 
+            |
+    ---------------------
+    |                   |
+    B                   C 
+    |                   |
+    --------------------
+             |
+             D 
+--------------------------------------
+to resolve diamond problem we can use virtual keyword 
+
+now, virtual keyword inform compiler that you don't have to create 
+separate copy of parent class insted of separate copy you can 
+pass duplicate copy so, it remove ambiguty
 
