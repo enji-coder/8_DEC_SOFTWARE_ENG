@@ -318,3 +318,67 @@ now, virtual keyword inform compiler that you don't have to create
 separate copy of parent class insted of separate copy you can 
 pass duplicate copy so, it remove ambiguty
 
+------------------------------------------------
+destrcutor : destrcutor mainly work to destroy object 
+        whenever we close our block it automatically destroy object after use. 
+
+        same like constructor declare in public mode as destructor declare in public mode 
+
+        but in destructor we have to add ~ sign in prefix and same name as class name 
+
+        syntax : 
+
+        ~classname
+        {
+            // body of destructor 
+        }
+
+------------------------------------------------
+encapsulation : so sounds like capsule 
+
+    encapsulation is a most powerfull concept of oop concept which bind 
+    different different data member and member functions in single entity 
+    and provide data hiding from outside the world. 
+
+    encapsulation concept is achhieve by class and object example. 
+
+--------------------------------------------------------
+polymorphism : poly means many and morphism means forms 
+
+    one named method has different forms its called polymorphism 
+
+    polymorphism is derived from greek word means one class can contain same 
+    name multiple methods 
+
+there are 2 types of polymorphism
+1) method overloading  - compile time polymorphism 
+2) method overriding   - run time polymorphism
+
+-----------------------------------
+1)  Compile Time polymorphism : 
+    which is also know as early binding and static polymorphism
+
+    which is achieve by method overloading and operator overloading 
+
+
+2) run time polymorphism : 
+    which is also known as late binding and dynamic polymorphism
+    
+    which is acheive by method overriding (inheritance ) and virtual function . 
+
+------------------------------------------------
+Method overloading : 
+
+        when one class can contain same name multiple methods its called 
+
+        method overloading. 
+
+        Product 
+            -> clickEvent 
+                    (image)
+                    (button)
+                    (text)
+
+        note : same name method with different signature (different parameters)
+
+            
