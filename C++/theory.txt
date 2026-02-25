@@ -8,6 +8,17 @@ what is c++ :
 
     it showing postfix increment 
 
+--------------------------
+oop concept's pillers
+
+-> class 
+-> object 
+-> inheritance 
+-> encapsulation
+-> polymorphism
+-> abstraction 
+-> Aggregation 
+
 ------------------------------------------
 POP vs OOP : 
 
@@ -381,4 +392,102 @@ Method overloading :
 
         note : same name method with different signature (different parameters)
 
-            
+=======================================================
+Method overriding : 
+        when parent and child both have same name method and same name arguments its called 
+        method overriding 
+
+        syntax : 
+
+        class  Parent 
+        {
+            void display()
+            {
+
+            }
+        } ;   
+        class Child(Parent)
+        {
+            void display()
+            {
+
+            }
+        };
+=========================================================
+Abstraction : Abstraction is a concept which provide only 
+few information not allocated background information 
+
+    the main aim of abstraction concept is to achieve data hiding 
+    and hide implementation. 
+
+    abstraction is a concept which is only achieve by abstract class and 
+    abstract method 
+
+
+-> abstract method / pure virtual function :
+
+        pure virtual function means function does not contain implementation 
+
+        abstract method which is indicate by pure virtual function means without 
+        body only method declaration. 
+
+        syntax : 
+
+            virtual  <returntype>  funname() = 0;
+
+                        A (house)
+                        | 
+                        V 
+                -------------------
+                |                   | 
+                B                   C  
+
+        at the time of inheritance there is no data hiding between two child. 
+        so, resolve this situation we can use abstraction concept here 
+
+-> abstract class : 
+
+        A class which can contain abstract method its called abstract class. 
+=========================================================================
+Aggregation : Aggregation is a part of relationship 
+
+        inheritance provide IS - A relationship 
+
+        Aggregation provide HAS- A relationship 
+
+        IS- A relationship :   parent is connected with child 
+                    (100 % inherite)
+
+        HAS - A relationship : Department has staff 
+                    ( we are use properties of another class using of reference insted of inherite)
+
+---------------------------------------------------------
+Student                     
+
+    - name 
+    - score 
+    - city 
+    - state 
+    - pincode 
+
+emp : 
+
+    - name 
+    - department 
+    - city 
+    - state 
+    - pincode 
+
+---------------------------------------------------------
+friend function : friend function is a special member function 
+        which can access private member outside the class. 
+
+        friend function declare with using of friend keyword 
+
+        syntax : 
+
+        friend  <returntype>  <funname> (classname  obj); 
+
+
+        
+
