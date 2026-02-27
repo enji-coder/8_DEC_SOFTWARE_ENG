@@ -1,0 +1,179 @@
+what is database ?
+--------------------
+Database is a collection of data. 
+
+which is contain data in tabular formate 
+
+Row and column wise we can store multiple data in single frame. 
+
+Row represent single record and column represent specific field name of that record. 
+
+e.g.
+
+
+name        subject         city          pincode    (column name)
+------------------------------------------------
+Rakesh      MCA             Indore        452010     (row)
+
+we can store multiple records we can retrive records specific condition wise 
+even we can update and delete specific records condition wise. 
+
+----------------------------------------
+SQL : structure Query Language 
+
+it is a programming language 
+
+using SQL we can perform all database operations. 
+
+1. Create 
+2. Read 
+3. Update 
+4. Delete
+
+----------------------------------------
+Login with Mysql cmd panel 
+
+# mysql -u root -p
+
+Enter password : 
+
+--------------------------------------
+--------------------------------------------------
+==> DDL : Data defination Language :
+
+    to create structure of database and table we use DDL commands using below 
+    commands we can create structure we can add and remove fields we can remove table 
+    or we can rename it using DDL commands.
+
+    1) create 
+    2) Alter 
+    3) Drop 
+    4) Truncate 
+    5) Rename 
+
+--------------------------------------------------
+==> DML : Data Manipulation Language 
+
+    1) Insert 
+    2) Update 
+    3) Delete 
+    4) Select 
+
+--------------------------------------------------
+==> DQL : Data Query Language 
+
+    1) Select 
+
+
+--------------------------------------------------
+==> DCL : Data Control Language 
+
+    1) Grant 
+    2) Revoke 
+
+--------------------------------------------------
+==> TCL : Transaction Control Language 
+
+    1) Commit 
+    2) Rollback 
+    3) Savepoint 
+
+----------------------------------------
+create database syntax : 
+
+    create database <databasename>; 
+
+    e.g. 
+
+    create database 8DECSE;
+
+now, next step to check all databases; 
+
+    # show databases;
+
+now, next remove database 
+
+    #drop database <database>;
+
+    e.g. 
+
+    drop database MYDB; 
+    show databases;
+
+----------------------------------------
+now, next select your database which you want to workupon it 
+
+syntax : 
+
+    -> use <databasename>;
+
+    e.g. 
+
+    use 8DECSE;
+
+----------------------------------------
+table : one database can contain as many as tables 
+
+    e.g. 
+
+       table contain row and column 
+
+next step : table creation. 
+
+    syntax : 
+
+        create table <tablename> (
+            <column1> <datatype>,
+            <column2> <datatype>,
+            <column3> <datatype>
+        );
+
+    e.g.
+        create table Student
+         (
+            id int,
+            name varchar(20),
+            subject varchar(20),
+            score int
+         );
+       
+now, next check table is proper created or not using describe command 
+
+syntax :  #desc <tablename>;
+
+    e.g. 
+
+        -> desc Student;
+
+=========================================================
+=========================================================
+Alter : Alter command is most important part of DDL commands 
+
+    using of Alter command we can add , remove or modify fields of table 
+
+    1) add 
+    2) drop 
+    3) modify 
+
+    e.g. 
+    syntax : 
+
+        alter table <tablename>  <altercommand>   fieldname  datatype 
+
+        e.g. 
+
+        -> alter table  student  add  city  varchar(20); 
+
+        -> desc student;
+
+        -> alter table  student  <drop>  fieldname; 
+
+        e.g.  alter table student add dummy varchar(20);
+
+        -> desc student;
+        ->  alter table student drop dummy; 
+        -> desc student;
+        
+
+=========================================================
+=========================================================
