@@ -57,7 +57,7 @@ Enter password :
     1) Insert 
     2) Update 
     3) Delete 
-    4) Select 
+  
 
 --------------------------------------------------
 ==> DQL : Data Query Language 
@@ -79,6 +79,9 @@ Enter password :
     3) Savepoint 
 
 ----------------------------------------
+DDL commands : 
+
+1) create 
 create database syntax : 
 
     create database <databasename>; 
@@ -147,13 +150,15 @@ syntax :  #desc <tablename>;
 
 =========================================================
 =========================================================
-Alter : Alter command is most important part of DDL commands 
+
+2) Alter : Alter command is most important part of DDL commands 
 
     using of Alter command we can add , remove or modify fields of table 
 
-    1) add 
-    2) drop 
-    3) modify 
+    1) add     - to add specific new field in existing table 
+    2) drop   - to remove specific column 
+    3) modify  - to modify filed datatyppe or size 
+    4) rename   - to rename fieldname 
 
     e.g. 
     syntax : 
@@ -173,7 +178,334 @@ Alter : Alter command is most important part of DDL commands
         -> desc student;
         ->  alter table student drop dummy; 
         -> desc student;
-        
+
+        modify : when we want to change any field data type or field size we can 
+            use alter modify 
+
+        syntax : 
+
+            alter table <tablename> modify <columnname> <datatype> ;
+
+            e.g. 
+
+            alter table student modify name varchar(25);
+
+            -> show databases;
+            -> use 8decse;
+            -> show tables;
+            -> desc student;
+            -> alter table student modify city varchar(30);
+            -> desc student;
+
+
+    => alter rename command 
+
+            when we want to change column name using of rename command 
+
+            syntax : 
+                alter table <tablename> rename column  <columname> to <new columnname>; 
+
+            e.g. 
+
+            ->  alter table student rename column score to marks;
+            -> desc student;
+========================================================
+=========================================================
+3) drop : to delete table or database from the memory we can use drop command 
+
+    -> syntax : 
+
+        drop table <tablename>;
+
+        or 
+
+        drop database <databaseName>;
+
+        e.g. 
+        ->  create table dummy
+             (
+             id int,
+             name char(20),
+             subject char(20)
+             );
+
+        ->  show tables;
+        ->  drop table dummy;
+
+        ->  show tables;
+
+========================================================
+=========================================================
+4) Truncate  : 
+        drop delete table and column from the memory completely but 
+        using of Truncate command we can remove all records from the table 
+        but structure remain same 
+
+
+        means using of Truncate we don't need to recreate table but using of 
+        drop command we have to create table first then re enter data. 
+
+        Truncate is faster then drop because it delete all records from the table. 
+
+        e.g.  drop : account delete 
+
+              Truncate : delete order history or search history ... 
+
+        syntax : 
+
+            # Truncate table <tablename>; 
+
+            create table dummy1 (
+                 id int,
+                 name varchar(20)
+                 );
+
+            truncate table dummy1;
+
+            show tables;
++------------------+
+| Tables_in_8decse |
++------------------+
+| dummy1           |
+| student          |
++------------------+
+
+ 
+========================================================
+=========================================================
+5) Rename : when we want to change table name we can use rename command 
+
+        syntax : rename  table  <oldtablenmae> to <newtablename>;
+
+        e.g. : rename table dummy1 to tbl_user;
+
+         show tables;
+
++------------------+
+| Tables_in_8decse |
++------------------+
+| student          |
+| tbl_user         |
++------------------+
+
+        -> note : we can also rename table name using of alter commmand 
+
+            syntax : 
+
+            # alter table <oldname> rename  to <newname>;
+
+            e.g. alter table tbl_user rename to user;
 
 =========================================================
 =========================================================
+DML : Data Manipulation Language : 
+
+    1) insert 
+    2) update 
+    3) delete 
+
+
+1) insert : insert command is used to store record in existing table using of specific 
+        column wise . 
+
+
+        syntax : 
+
+        insert into <tablename> (columnname1,columnname2..)
+                values 
+
+                            (value1,value2...);
+
+        e.g. 
+
+             insert into student
+             (id,name,subject,marks,city)
+                values
+             (1,'ajay','python',89,'ahmedabad');
+
+    *** =>  DQL : select : 
+
+                to retrive all records from table 
+
+         syntax : 
+            select * from <tablename>;
+
+            e.g. 
+           
+        select * from student;
++------+------+---------+-------+-----------+
+| id   | name | subject | marks | city      |
++------+------+---------+-------+-----------+
+|    1 | ajay | python  |    89 | ahmedabad |
++------+------+---------+-------+-----------+
+
+    ---------------------------------------------------------
+    store multiple records using single insert command 
+
+    => insert into student
+     (id,name,subject,marks,city)
+        values
+     (2,'riya','java',45,'surat'),
+     (3,'diya','flutter',98,'ahmedabad');
+
+    => select * from student;
++------+------+---------+-------+-----------+
+| id   | name | subject | marks | city      |
++------+------+---------+-------+-----------+
+|    1 | ajay | python  |    89 | ahmedabad |
+|    2 | riya | java    |    45 | surat     |
+|    3 | diya | flutter |    98 | ahmedabad |
++------+------+---------+-------+-----------+
+
+    => without adding and columnname in command 
+
+        => insert into student
+             values
+             (4,'kiaan','python',57,'surat');
+
+select * from student;
++------+-------+---------+-------+-----------+
+| id   | name  | subject | marks | city      |
++------+-------+---------+-------+-----------+
+|    1 | ajay  | python  |    89 | ahmedabad |
+|    2 | riya  | java    |    45 | surat     |
+|    3 | diya  | flutter |    98 | ahmedabad |
+|    4 | kiaan | python  |    57 | surat     |
++------+-------+---------+-------+-----------+
+
+=========================================================
+=========================================================
+
+constraints : constraints means we can prevent unwanted records in database 
+
+        we can restrict data from outside the world. 
+
+1) NOT NULL : when we add any field as a not null means at a insert time we can't skip this field. 
+
+        bydefault all fields are null if we want to specify specific field 
+        with not null we can follow below syntax : 
+
+        syntax : 
+
+            create table <tablename>
+            {
+                fieldname datatype(size)  not null,
+                .
+                .
+            };
+        
+        e.g. 
+        => create table dummy1
+             (
+                id int,
+                name varchar(20) not null
+             );
+
+        => desc dummy1;
+
+        => insert into dummy1 (id) values (1);
+           ERROR 1364 (HY000): Field 'name' doesn't have a default value
+
+           what is meaning of not null : this field can't be null this is mandatory. 
+
+        => alter table dummy1 modify name varchar(20) null;
+            Query OK, 0 rows affected (0.07 sec)
+        
+        => insert into dummy1 (id) values (1);
+            Query OK, 1 row affected (0.01 sec)
+
+        =>  select * from dummy1;
+            +------+------+
+            | id   | name |
+            +------+------+
+            |    1 | NULL |
+            +------+------+
+            1 row in set (0.00 sec)
+
+        => now, i want to change name field null to not null 
+
+        => truncate table dummy1;
+
+        => alter table dummy1 modify name varchar(20) not null;
+
+        desc dummy1;
+        +-------+-------------+------+-----+---------+-------+
+        | Field | Type        | Null | Key | Default | Extra |
+        +-------+-------------+------+-----+---------+-------+
+        | id    | int         | YES  |     | NULL    |       |
+        | name  | varchar(20) | NO   |     | NULL    |       |
+        +-------+-------------+------+-----+---------+-------+
+
+
+2) Default : when we want to define default value to specific column we can use default constraints 
+
+        so, by default it will consider default value 
+
+        syntax : 
+
+            create table <tablename>
+            (
+                fieldname  datatype  default  <defaultvalue>
+            );
+
+        e.g. 
+         create table dummy2
+         (
+         id int,
+         name varchar(20),
+         status varchar(20) default "ACTIVE"
+         );
+
+        => insert into dummy2 (id,name)
+             values
+             (1,'aaa'),
+             (2,'bbb');
+
+        desc dummy2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| status | varchar(20) | YES  |     | ACTIVE  |       |
++--------+-------------+------+-----+---------+-------+
+
+        =>  select * from dummy2;
++------+------+--------+
+| id   | name | status |
++------+------+--------+
+|    1 | aaa  | ACTIVE |
+|    2 | bbb  | ACTIVE |
++------+------+--------+
+
+        => using of default constraint alter command 
+
+        => alter table dummy2 add created_at TIMESTAMP default CURRENT_TIMESTAMP;
+
+        select * from dummy2;
+        +------+------+--------+---------------------+
+        | id   | name | status | created_at          |
+        +------+------+--------+---------------------+
+        |    1 | aaa  | ACTIVE | 2026-03-03 09:54:22 |
+        |    2 | bbb  | ACTIVE | 2026-03-03 09:54:22 |
+        +------+------+--------+---------------------+
+        2 rows in set (0.00 sec)
+
+
+        =>  alter table dummy2 modify status varchar(20) default "PENDING";
+
+        => insert into dummy2 (id,name)
+        -> values
+        -> (3,'aaasss');
+        
+
+        mysql> select * from dummy2;
+        +------+--------+---------+---------------------+
+        | id   | name   | status  | created_at          |
+        +------+--------+---------+---------------------+
+        |    1 | aaa    | ACTIVE  | 2026-03-03 09:54:22 |
+        |    2 | bbb    | ACTIVE  | 2026-03-03 09:54:22 |
+        |    3 | aaasss | PENDING | 2026-03-03 09:57:05 |
+        +------+--------+---------+---------------------+
+        3 rows in set (0.00 sec)
+
