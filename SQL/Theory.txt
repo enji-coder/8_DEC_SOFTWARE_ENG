@@ -951,3 +951,124 @@ IS NULL / IS NOT NULL
     -> select * from student where name is not null;
     -> select * from student where name is null;
 Empty set (0.00 sec)    
+
+-------------------------------------------------------
+Order by : when we want to retrive data from the database with specific orderformate 
+
+        by default order format is ASCENDING order 
+
+        there are 2 keywords  ASC and DESC 
+
+        syntax : 
+
+        select * from <tablename> order by <columname>;
+        or 
+        select * from <tablename> order by <columname> asc;
+        or 
+        select * from <tablename> order by <columname> desc;
+
+    e.g.  -> select * from student order by name;
+          ->  select * from student order by marks asc;
+          -> select * from student order by marks desc;
+          ->  select * from student order by marks desc limit 3;
+          ->  select * from student order by name,subject;
+
+
+-------------------------------------------------------
+GROUP BY : group by row wise which contain common column value 
+
+    to use concept of GROUP BY we have to use aggregate functions 
+
+    -> COUNT(*) - count no. of record 
+    -> SUM : total 
+    -> MAX : maximum value 
+    -> MIN : minimum value 
+    -> AVG : Average value 
+
+    syntax : 
+
+        select columnname, count (*) from <tablename> GROUP by <columnname>;
+
+    e.g. select city , count(*) from student group by city;
++-----------+----------+
+| city      | count(*) |
++-----------+----------+
+| ahmedabad |        2 |
+| surat     |        3 |
+| mumbai    |        1 |
++-----------+----------+
+
+    => select city, sum(marks) from student group by city;
++-----------+------------+
+| city      | sum(marks) |
++-----------+------------+
+| ahmedabad |        140 |
+| surat     |        232 |
+| mumbai    |         40 |
++-----------+------------+
+
+    =>  select city, max(marks) from student group by city;
++-----------+------------+
+| city      | max(marks) |
++-----------+------------+
+| ahmedabad |         89 |
+| surat     |         89 |
+| mumbai    |         40 |
++-----------+------------+
+
+    => select city, min(marks) from student group by city;
++-----------+------------+
+| city      | min(marks) |
++-----------+------------+
+| ahmedabad |         51 |
+| surat     |         55 |
+| mumbai    |         40 |
++-----------+------------+
+
+    =>  select city, avg(marks) from student group by city;
++-----------+------------+
+| city      | avg(marks) |
++-----------+------------+
+| ahmedabad |    70.0000 |
+| surat     |    77.3333 |
+| mumbai    |    40.0000 |
++-----------+------------+
+
+==> create table product (
+     id int primary key auto_increment,
+     product_name varchar(20),
+     product_qty int,
+     product_price int
+     );
+Query OK, 0 rows affected (0.20 sec)
+
+==> insert into product (product_name,product_qty,product_price)
+     values
+     ('tv',20,20000),
+     ('AC',60,65000),
+     ('AC',40,15000),
+     ('Laptop',67,48500),
+     ('tv',10,35500),
+     ('Mobile',64,15000);
+
+==> select * from product;
++----+--------------+-------------+---------------+
+| id | product_name | product_qty | product_price |
++----+--------------+-------------+---------------+
+|  1 | tv           |          20 |         20000 |
+|  2 | AC           |          60 |         65000 |
+|  3 | AC           |          40 |         15000 |
+|  4 | Laptop       |          67 |         48500 |
+|  5 | tv           |          10 |         35500 |
+|  6 | Mobile       |          64 |         15000 |
++----+--------------+-------------+---------------+
+
+==> select product_name , count(*) from product group by product_name;
++--------------+----------+
+| product_name | count(*) |
++--------------+----------+
+| tv           |        2 |
+| AC           |        2 |
+| Laptop       |        1 |
+| Mobile       |        1 |
++--------------+----------+
