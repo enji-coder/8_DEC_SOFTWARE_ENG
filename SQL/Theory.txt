@@ -380,6 +380,19 @@ constraints : constraints means we can prevent unwanted records in database
 
         we can restrict data from outside the world. 
 
+
+        constraints : 
+
+            1) NOT NULL 
+            2) DEFAULT
+            3) PRIMARY KEY 
+            4) UNIQUE 
+            5) auto_increment
+            6) check 
+            7) foreign key 
+
+
+
 1) NOT NULL : when we add any field as a not null means at a insert time we can't skip this field. 
 
         bydefault all fields are null if we want to specify specific field 
@@ -509,3 +522,432 @@ constraints : constraints means we can prevent unwanted records in database
         +------+--------+---------+---------------------+
         3 rows in set (0.00 sec)
 
+
+3) UNIQUE : UNIQUE constraint means we want to make specific column UNIQUE means 
+
+        we won't to store duplicate values in UNIQUE column. 
+
+        UNIQUE value means 1 time blank value 1 time null value can consider 
+
+        e.g.  mobile no, email , adhar card etc..  unique field 
+
+        ->  use 8decse;
+        -> create table dummy1
+             (
+             id int,
+             email varchar(20) unique,
+             phone int unique,
+             status varchar(20) default "DE-ACTIVE"
+             );
+
+        -> desc dummy1;
++--------+-------------+------+-----+-----------+-------+
+| Field  | Type        | Null | Key | Default   | Extra |
++--------+-------------+------+-----+-----------+-------+
+| id     | int         | YES  |     | NULL      |       |
+| email  | varchar(20) | YES  | UNI | NULL      |       |
+| phone  | int         | YES  | UNI | NULL      |       |
+| status | varchar(20) | YES  |     | DE-ACTIVE |       |
++--------+-------------+------+-----+-----------+-------+
+
+        -> insert into dummy1 (id,email,phone)
+            values
+            (1,'a@gmail.com',87884944),
+            (2,'b@gmail.com',87884957);
+
+-----------------------------------------------
+select * from dummy1;
++------+-------------+----------+-----------+
+| id   | email       | phone    | status    |
++------+-------------+----------+-----------+
+|    1 | a@gmail.com | 87884944 | DE-ACTIVE |
+|    2 | b@gmail.com | 87884957 | DE-ACTIVE |
++------+-------------+----------+-----------+
+
+
+mysql> insert into dummy1 (id,email,phone)
+    -> values
+    -> (3,'a@gmail.com',8451155);
+
+ERROR 1062 (23000): Duplicate entry 'a@gmail.com' for key 'dummy1.email'
+
+4) primary key : primary key is a most powerfull concept of sql constraint 
+
+        using of primary key we can make any column as unique column but 
+
+        primary key we can apply only on single field of table. 
+
+            unique                      primary key 
+
+        many column                     only one column 
+        can accept blank / null         not accept null/blank value 
+
+        e.g. email,phone,               e.g.  id , rollno, enroll_id..etc 
+             adharcard id ,uuid
+
+        syntax : 
+
+            create table <tablename>
+            (
+                fieldname  datatype  primary key,
+                .
+                .
+            )
+
+            USING OF ALTER COMMAND 
+
+            alter table <tablename> 
+            add primary key (fieldname);
+
+
+
+    e.g.  create table dummy1
+             (
+             id int primary key,
+             name varchar(20)
+             );
+
+
+desc dummy1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+ => alter table dummy1 drop primary key;
+
+  desc dummy1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+=>  alter table dummy1 add primary key(id);
+
+=> desc dummy1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+=================================================================================
+
+5) Auto increment : when we want to apply and field to start auto increment without accept value from user 
+
+    it generate auto indexes in field value 
+
+
+    syntax : 
+
+        create table <tablename>
+        (
+            fieldname datatype auto_increment,
+            .
+            .
+        )
+
+
+    alter table student modify id int primary key auto_increment;
+
+    desc student;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(20) | YES  |     | NULL    |                |
+| subject | varchar(20) | YES  |     | NULL    |                |
+| marks   | int         | YES  |     | NULL    |                |
+| city    | varchar(30) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+
+==> insert into student
+     (name,subject,marks,city)
+     values
+     ('Anjali','python',89,'ahmedabad'),
+     ('riya','java',84,'surat'),
+     ('nik','flutter',51,'ahmedabad');
+
+==> insert into student
+     values
+     (4,'jiya','flutter',13,'ahmedabad');
+
+select * from student;
++----+--------+---------+-------+-----------+
+| id | name   | subject | marks | city      |
++----+--------+---------+-------+-----------+
+|  1 | Anjali | python  |    89 | ahmedabad |
+|  2 | riya   | java    |    84 | surat     |
+|  3 | nik    | flutter |    51 | ahmedabad |
+|  4 | jiya   | flutter |    13 | ahmedabad |
++----+--------+---------+-------+-----------+
+
+==> insert into student
+    -> values
+    -> (4,'nikhil','java',84,'surat');
+ERROR 1062 (23000): Duplicate entry '4' for key 'student.PRIMARY'
+
+6) check : check is a constraint which is mainly use to apply restrictions on specific field 
+        for e.g.  emp table we can allow only more than 18 years old emply.
+
+        syntax : 
+
+            fieldname  check  fieldname condition ;
+
+        =>
+            create table user 
+            (
+                id int primary key  auto_increment,
+                name varchar(20),
+                age int check (age > 18)
+            );
+   
+             or 
+
+        =>  alter table user add column age int check (age>18);
+
+        => desc user;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+        => insert into user (id,name,age)
+             values
+             (1,'aaa',89);
+        
+        => select * from user;
++------+------+------+
+| id   | name | age  |
++------+------+------+
+|    1 | aaa  |   89 |
++------+------+------+
+
+        => insert into user
+        -> values
+        -> (2,'bbb',5);
+    ERROR 3819 (HY000): Check constraint 'user_chk_1' is violated.  
+
+        =>  alter table user drop column age;
+
+        => alter table user add column age int;
+
+        => alter table user add constraint check_age  check(age>18);
+
+        add unique constraint name using of alter command 
+
+        =>  alter table user add  constraint user_pk primary key(id);
+
+        => alter table user drop primary key;
+
+
+========================================================
+2) Update : when we want to update record based on specific condition wise we can use update command 
+
+    update command is a part of DML (data Manipulation language)
+
+    syntax : 
+
+        update <tablename> set columname=fieldname,columnname=fieldname
+        where condition;    
+    
+        -> select * from student;
+        -> update student set marks=55 where id = 2;
+        -> select * from student;
++----+--------+---------+-------+-----------+
+| id | name   | subject | marks | city      |
++----+--------+---------+-------+-----------+
+|  1 | Anjali | python  |    89 | ahmedabad |
+|  2 | riya   | java    |    55 | surat     |
+|  3 | nik    | flutter |    51 | ahmedabad |
+|  4 | jiya   | flutter |    13 | ahmedabad |
++----+--------+---------+-------+-----------+
+
+        -> update student set name='jagruti',subject='java',city='mumbai' where id = 4;
+        select * from student;
++----+---------+---------+-------+-----------+
+| id | name    | subject | marks | city      |
++----+---------+---------+-------+-----------+
+|  1 | Anjali  | python  |    89 | ahmedabad |
+|  2 | riya    | java    |    55 | surat     |
+|  3 | nik     | flutter |    51 | ahmedabad |
+|  4 | jagruti | java    |    13 | mumbai    |
++----+---------+---------+-------+-----------+
+
+    -> update student set name='Riya' where name='riya';
+    -> select * from student;
++----+---------+---------+-------+-----------+
+| id | name    | subject | marks | city      |
++----+---------+---------+-------+-----------+
+|  1 | Anjali  | python  |    89 | ahmedabad |
+|  2 | Riya    | java    |    55 | surat     |
+|  3 | nik     | flutter |    51 | ahmedabad |
+|  4 | jagruti | java    |    13 | mumbai    |
++----+---------+---------+-------+-----------+
+4 rows in set (0.00 sec)
+
+----------------------------------------------------
+3) delete : when we want to delete or remove specific row condition wise we can 
+    use delete command 
+
+    syntax : 
+
+    -> delete from <tablname> where condition;
+     select * from student;
++----+---------+---------+-------+-----------+
+| id | name    | subject | marks | city      |
++----+---------+---------+-------+-----------+
+|  1 | Anjali  | python  |    89 | ahmedabad |
+|  2 | Riya    | java    |    55 | surat     |
+|  3 | nik     | flutter |    51 | ahmedabad |
+|  4 | jagruti | java    |    13 | mumbai    |
+|  5 | xyz     | dummy   |    89 | surat     |
+|  6 | zds     | dummy2  |    57 | surat     |
+|  7 | abc     | ssss    |    23 | ahmedabad |
++----+---------+---------+-------+-----------+
+
+    -> mysql> delete from student where id = 6;
+
+    ->select * from student;
++----+---------+---------+-------+-----------+
+| id | name    | subject | marks | city      |
++----+---------+---------+-------+-----------+
+|  1 | Anjali  | python  |    89 | ahmedabad |
+|  2 | Riya    | java    |    55 | surat     |
+|  3 | nik     | flutter |    51 | ahmedabad |
+|  4 | jagruti | java    |    13 | mumbai    |
+|  5 | xyz     | dummy   |    89 | surat     |
+|  7 | abc     | ssss    |    23 | ahmedabad |
++----+---------+---------+-------+-----------+
+
+    -> delete from student where marks <= 23;
+Query OK, 2 rows affected (0.01 sec)
+
+    -> select * from student;
++----+--------+---------+-------+-----------+
+| id | name   | subject | marks | city      |
++----+--------+---------+-------+-----------+
+|  1 | Anjali | python  |    89 | ahmedabad |
+|  2 | Riya   | java    |    55 | surat     |
+|  3 | nik    | flutter |    51 | ahmedabad |
+|  5 | xyz    | dummy   |    89 | surat     |
++----+--------+---------+-------+-----------+
+
+
+----------------------------------------------------
+----------------------------------------------------
+iii)  DQL : Data Query Language : 
+
+            most most powerfull concept of sql 
+
+            when we want to retrive records from the table we can use DQL command \
+
+                -> select 
+
+    using of select command we can retrive different different records with specific condition wise. 
+
+            syntax : 
+
+            -> select * from <tablename>;
+
+            e.g. -> select * from student;
+
+    fetch specific columns from table 
+
+            syntax : 
+
+            -> select fieldname1,fieldname2... from <tablename>;
+
+            e.g.  select name,subject from student;
+
+    fetch specific data using of specific condition wise 
+            for condition we use where clause. 
+
+            syntax : select * from <tablename> where condition.;
+
+            e.g. select * from student where city="ahmedabad";
+
+            -> select name,subject,city from student where city="ahmedabad";
+
+    conditional operator : 
+
+            = , != , > , < , >= , <= 
+
+    logical operator : 
+            and , or , not 
+        
+    membership operator : 
+            in , not in , between
+        
+    pattern matching operator : 
+            like , not like 
+        
+    null operator : 
+            is null , is not null 
+        
+    ------------------------------------------
+    -> select * from student where marks < 60;
++----+------+---------+-------+-----------+
+| id | name | subject | marks | city      |
++----+------+---------+-------+-----------+
+|  2 | Riya | java    |    55 | surat     |
+|  3 | nik  | flutter |    51 | ahmedabad |
++----+------+---------+-------+-----------+
+
+    -> select * from student where marks>50 and marks <60;
+    -> update student set marks=40,city='mumbai' where id = 9;
+    -> select * from student;
+    -> select * from student where subject='java' and city ='surat';
+    -> select * from student where subject='java' or subject='python';
+    -> select name,subject from student where subject!='java';
+
+    ->  select name,subject,city from student where subject in ('java','flutter');
+    -> select name,city from student where city in ('ahmedabad','surat');
+    -> select name,city from student where city not in ('ahmedabad','surat');
+    -> select name,marks from student where marks between 50 and 80;
++------+-------+
+| name | marks |
++------+-------+
+| Riya |    55 |
+| nik  |    51 |
++------+-------+
+
+------------------------------------------------------------
+    LIKE  
+
+    syntax : select * from <tablename> where name like '%a%'; 
+
+    -> select name,city from student where name like '%a%';
+
+    -> select name,city from student where name like 'a%';
+
+    -> select name,city from student where name like '%a';
+
+    -> select name,city from student where name like '_a%';
+
+    -> select name,city from student where name like '__a%';
+
+    -> select name,city from student where name like '%a__';
+
+----------------------------------------------------------------
+IS NULL / IS NOT NULL 
+
+    to check any field contain null value or not using of IS NULL and IS NOT NULL condition 
+
+    syntax : 
+
+    select fieldname from <tablename> where columname is not null;
+
+    -> select * from student where name is not null;
+    -> select * from student where name is null;
+Empty set (0.00 sec)    
