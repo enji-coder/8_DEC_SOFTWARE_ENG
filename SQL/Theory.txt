@@ -1072,3 +1072,459 @@ Query OK, 0 rows affected (0.20 sec)
 | Laptop       |        1 |
 | Mobile       |        1 |
 +--------------+----------+
+
+==> where and having clause 
+
+where : apply condition before group 
+
+having : apply condition after group creation 
+
+syntax : 
+
+        select fieldname,count(*) from <tablename> group by <fieldname> 
+            having fieldname condition; 
+
+    ==>  select * from product;
++----+--------------+-------------+---------------+
+| id | product_name | product_qty | product_price |
++----+--------------+-------------+---------------+
+|  1 | tv           |          20 |         20000 |
+|  2 | AC           |          60 |         65000 |
+|  3 | AC           |          40 |         15000 |
+|  4 | Laptop       |          67 |         48500 |
+|  5 | tv           |          10 |         35500 |
+|  6 | Mobile       |          64 |         15000 |
++----+--------------+-------------+---------------+
+
+==> select product_name,count(*) from product group by product_name;
++--------------+----------+
+| product_name | count(*) |
++--------------+----------+
+| tv           |        2 |
+| AC           |        2 |
+| Laptop       |        1 |
+| Mobile       |        1 |
++--------------+----------+
+
+==> select product_name,count(*) as Total_Products from product group by product_name;
++--------------+----------------+
+| product_name | Total_Products |
++--------------+----------------+
+| tv           |              2 |
+| AC           |              2 |
+| Laptop       |              1 |
+| Mobile       |              1 |
++--------------+----------------+
+
+==>  select product_name as product , count(*) as Total_Products from product group by
+     product_name having count(*) >= 2;
+
++---------+----------------+
+| product | Total_Products |
++---------+----------------+
+| tv      |              2 |
+| AC      |              2 |
++---------+----------------+
+
+==> select product_name,sum(product_price) as Total from product group by product_name;
++--------------+-------+
+| product_name | Total |
++--------------+-------+
+| tv           | 55500 |
+| AC           | 80000 |
+| Laptop       | 48500 |
+| Mobile       | 15000 |
++--------------+-------+
+
+
+==> select product_name,sum(product_price) as Total from product group by product_name
+    -> having sum(product_price) >= 50000;
++--------------+-------+
+| product_name | Total |
++--------------+-------+
+| tv           | 55500 |
+| AC           | 80000 |
++--------------+-------+
+2 rows in set (0.00 sec)
+
+------------------------------------------------------------
+select product_name , sum(product_price) as total from product
+where product_qty > 30 group by product_name;
++--------------+-------+
+| product_name | total |
++--------------+-------+
+| AC           | 80000 |
+| Laptop       | 48500 |
+| Mobile       | 15000 |
++--------------+-------+
+
+-> select product_name , sum(product_price) as total from product
+   where product_qty > 30 group by product_name having sum(product_price) > 50000;
++--------------+-------+
+| product_name | total |
++--------------+-------+
+| AC           | 80000 |
++--------------+-------+
+
+-> select distinct product_name from product;
++--------------+
+| product_name |
++--------------+
+| tv           |
+| AC           |
+| Laptop       |
+| Mobile       |
++--------------+
+=======================================================
+=======================================================
+
+JOIN : when we wants to join 2 or more tables with using of same matching value its called joining 
+
+    there is no need to apply foriegn key for joining. 
+
+    => create table city (
+         id int primary key auto_increment,
+         name varchar(20)
+        );
+
+    => insert into city (name)
+         values
+         ('Ahmedabad'),
+         ('Surat'),
+         ('Mumbai'),
+         ('Nagpur'),
+         ('Pune');
+
+    select * from city;
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | Ahmedabad |
+|  2 | Surat     |
+|  3 | Mumbai    |
+|  4 | Nagpur    |
+|  5 | Pune      |
++----+-----------+
+
+    => create table user
+         (
+            id int primary key auto_increment,
+            u_name varchar(20),
+            city_id int
+        );
+
+    => insert into user
+         (u_name,city_id)
+            values
+         ('Ram',1),
+         ('Ramesh',1),
+         ('Mahesh',3),
+         ('Kevin',4),
+         ('Jayesh',5);
+
+    select * from user;
++----+--------+---------+
+| id | u_name | city_id |
++----+--------+---------+
+|  1 | Ram    |       1 |
+|  2 | Ramesh |       1 |
+|  3 | Mahesh |       3 |
+|  4 | Kevin  |       4 |
+|  5 | Jayesh |       5 |
++----+--------+---------+
+
+=======================================================
+
+    CITY :
+
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | Ahmedabad |
+|  2 | Surat     |
+|  3 | Mumbai    |
+|  4 | Nagpur    |
+|  5 | Pune      |
++----+-----------+
+
+    USER 
+
++----+--------+---------+
+| id | u_name | city_id |
++----+--------+---------+
+|  1 | Ram    |       1 |
+|  2 | Ramesh |       1 |
+|  3 | Mahesh |       3 |
+|  4 | Kevin  |       4 |
+|  5 | Jayesh |       5 |
++----+--------+---------+
+
+select user.u_name as username,city.name from user
+    -> join city
+    -> on user.city_id = city.id;
++--------+-----------+
+| u_name | name      |
++--------+-----------+
+| Ram    | Ahmedabad |
+| Ramesh | Ahmedabad |
+| Mahesh | Mumbai    |
+| Kevin  | Nagpur    |
+| Jayesh | Pune      |
++--------+-----------+
+
+===================================
+Real world example of 3 table joining
+
+
+=> create table tbl_order
+     (order_id int primary key auto_increment,
+     cust_id int,
+     pro_id int);
+
+=> insert into tbl_order
+     (cust_id,pro_id)
+     values
+     (1,1),
+     (1,3),  
+     (2,2),
+     (4,5);
+
+
+CUSTOMER (USER) TABLE ::: 
+------------------------------
++----+--------+---------+
+| id | u_name | city_id |
++----+--------+---------+
+|  1 | Ram    |       1 |
+|  2 | Ramesh |       1 |
+|  3 | Mahesh |       3 |
+|  4 | Kevin  |       4 |
+|  5 | Jayesh |       5 |
++----+--------+---------+
+
+PRODUCT TABLE ::::
+-----------------------------
++----+--------------+-------------+---------------+
+| id | product_name | product_qty | product_price |
++----+--------------+-------------+---------------+
+|  1 | tv           |          20 |         20000 |
+|  2 | AC           |          60 |         65000 |
+|  3 | AC           |          40 |         15000 |
+|  4 | Laptop       |          67 |         48500 |
+|  5 | tv           |          10 |         35500 |
+|  6 | Mobile       |          64 |         15000 |
++----+--------------+-------------+---------------+
+
+ORDER TABLE (tbl_order) ::::
+-----------------------------
+
++----------+---------+--------+
+| order_id | cust_id | pro_id |
++----------+---------+--------+
+|        1 |       1 |      1 |
+|        2 |       1 |      3 |
+|        3 |       2 |      2 |
+|        4 |       4 |      5 |
++----------+---------+--------+
+
+====================================================
+Expected Output : 
+
+Order_id   CustomerName     ProductName   ProductPrice 
+
+===================================================
+select tbl_order.order_id,user.u_name,product.product_name,product.product_price 
+from tbl_order
+
+join user
+on tbl_order.cust_id = user.id 
+
+join product
+on tbl_order.pro_id = product.id;
+
++----------+--------+--------------+---------------+
+| order_id | u_name | product_name | product_price |
++----------+--------+--------------+---------------+
+|        1 | Ram    | tv           |         20000 |
+|        2 | Ram    | AC           |         15000 |
+|        3 | Ramesh | AC           |         65000 |
+|        4 | Kevin  | tv           |         35500 |
++----------+--------+--------------+---------------+
+
+===========================================
+1)  INNER JOIN : inner join which is return only matching elements from the 
+    both tables 
+
+    insert into tbl_order (cust_id,pro_id)
+     values
+     (7,2),
+     (6,8);
+
+    => select * from tbl_order;
++----------+---------+--------+
+| order_id | cust_id | pro_id |
++----------+---------+--------+
+|        1 |       1 |      1 |
+|        2 |       1 |      3 |
+|        3 |       2 |      2 |
+|        4 |       4 |      5 |
+|        5 |       7 |      2 |
+|        6 |       6 |      8 |
++----------+---------+--------+
+
+    ==>  select * from user;
++----+--------+---------+
+| id | u_name | city_id |
++----+--------+---------+
+|  1 | Ram    |       1 |
+|  2 | Ramesh |       1 |
+|  3 | Mahesh |       3 |
+|  4 | Kevin  |       4 |
+|  5 | Jayesh |       5 |
++----+--------+---------+
+
+=> select user.u_name,tbl_order.pro_id
+    -> from user
+    -> inner join tbl_order
+    -> on user.id = tbl_order.cust_id;
++--------+--------+
+| u_name | pro_id |
++--------+--------+
+| Ram    |      1 |
+| Ram    |      3 |
+| Ramesh |      2 |
+| Kevin  |      5 |
++--------+--------+
+
+==================================================
+2) Left join : left join take all records from the left table and 
+        display matching values from the right table 
+
+        if there is no records in right table it display NULL 
+
+
+ select user.u_name,tbl_order.pro_id
+    -> from user
+    -> left join tbl_order
+    -> on user.id = tbl_order.cust_id;
++--------+--------+
+| u_name | pro_id |
++--------+--------+
+| Ram    |      3 |
+| Ram    |      1 |
+| Ramesh |      2 |
+| Mahesh |   NULL |
+| Kevin  |      5 |
+| Jayesh |   NULL |
++--------+--------+
+
+3) RIGHT JOIN : fetch all records from right table and try to match with left table 
+
+     select * from user
+    -> right join tbl_order
+    -> on user.id = tbl_order.cust_id;
++------+--------+---------+----------+---------+--------+
+| id   | u_name | city_id | order_id | cust_id | pro_id |
++------+--------+---------+----------+---------+--------+
+|    1 | Ram    |       1 |        1 |       1 |      1 |
+|    1 | Ram    |       1 |        2 |       1 |      3 |
+|    2 | Ramesh |       1 |        3 |       2 |      2 |
+|    4 | Kevin  |       4 |        4 |       4 |      5 |
+| NULL | NULL   |    NULL |        5 |       7 |      2 |
+| NULL | NULL   |    NULL |        6 |       6 |      8 |
+| NULL | NULL   |    NULL |        7 |    NULL |      4 |
+| NULL | NULL   |    NULL |        8 |    NULL |      2 |
++------+--------+---------+----------+---------+--------+
+
+4) OuterJOIN : fetch all record which is not match 
+
+5) FULL JOIN : fetch all matching records from left side and right side 
+
+    in simple language we can say that full join 
+    combination of left and right join 
+
+    in mysql full join is not working 
+
+    solution we can commbine left join and right join result 
+
+    using of UNION concept 
+
+======================================
+UNION : To combine two tables without duplicate value we can use union 
+    create table A
+     (
+     name varchar(20)
+     );
+
+     insert into A
+     values 
+     ('Ajay'),
+     ('Ravi'),
+     ('Ramesh');
+
+     select * from A;
++--------+
+| name   |
++--------+
+| Ajay   |
+| Ravi   |
+| Ramesh |
++--------+
+
+    create table B
+     (
+     name varchar(20)
+     );
+    
+    insert into B
+     values 
+     ('Riya'),
+     ('Ravi'),
+     ('Diya'),
+     ('Niya');
+
+    select * from B;
++------+
+| name |
++------+
+| Riya |
+| Ravi |
+| Diya |
+| Riya |
+| Ravi |
+| Diya |
+| Niya |
++------+
+
+    ==>  select * from A
+    -> union
+    -> select * from B;
++--------+
+| name   |
++--------+
+| Ajay   |
+| Ravi   |
+| Ramesh |
+| Riya   |
+| Diya   |
+| Niya   |
++--------+
+
+UNION ALL : contain duplicate value too 
+ select * from A
+    -> union all
+    -> select * from B;
++--------+
+| name   |
++--------+
+| Ajay   |
+| Ravi   |
+| Ramesh |
+| Riya   |
+| Ravi   |
+| Diya   |
+| Riya   |
+| Ravi   |
+| Diya   |
+| Niya   |
++--------+
